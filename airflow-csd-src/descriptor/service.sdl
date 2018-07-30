@@ -188,6 +188,28 @@
       "default": "/home/airflow/logs/scheduler",
       "minLength": 1,
       "configurableInWizard": "true"
+    },
+    {
+      "name": "parcels_root",
+      "label": "Parcels Root",
+      "description": "The folder where all the parcels are in Cloudera",
+      "required": "true",
+      "type": "path",
+      "pathType": "localDataDir",
+      "default": "/opt/cloudera/parcels",
+      "minLength": 1,
+      "configurableInWizard": "true"
+    },
+    {
+      "name": "parcel_dir_name",
+      "label": "Parcel Dir Name",
+      "description": "The directory name for the parcel",
+      "required": "true",
+      "type": "path",
+      "pathType": "localDataDir",
+      "default": "AIRFLOW",
+      "minLength": 1,
+      "configurableInWizard": "true"
     }
   ],
   "rolesWithExternalLinks" : ["AIRFLOW_WEBSERVER", "AIRFLOW_CELERY"],
@@ -211,6 +233,8 @@
           "CORE__METADATA_CONN_HOST": "${core__metadata_conn_host}",
           "CORE__METADATA_CONN_PORT": "${core__metadata_conn_port}",
           "CORE__METADATA_CONN_DB": "${core__metadata_conn_db}",
+          "PARCELS_ROOT":"${parcels_root}",
+          "PARCEL_DIRNAME":"${parcel_dir_name}",
           "WEBSERVER__WEB_SERVER_HOST": "${host}",
           "WEBSERVER__WEB_SERVER_PORT": "${webserver__web_server_port}",
           "CELERY__BROKER_URL": "${celery__broker_url}",
@@ -292,7 +316,7 @@
           {
             "filename": "airflow-conf/requirements.txt",
             "sourceFilename": "aux/client/requirements.txt"
-          }         
+          }
         ]
       }
     },
@@ -367,7 +391,7 @@
           {
             "filename": "airflow-conf/requirements.txt",
             "sourceFilename": "aux/client/requirements.txt"
-          }        
+          }
         ]
       }
     },
@@ -447,7 +471,7 @@
           {
             "filename": "airflow-conf/requirements.txt",
             "sourceFilename": "aux/client/requirements.txt"
-          }   
+          }
         ]
       }
     },
@@ -518,7 +542,7 @@
           {
             "filename": "airflow-conf/requirements.txt",
             "sourceFilename": "aux/client/requirements.txt"
-          }          
+          }
         ]
       }
     }
