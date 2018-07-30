@@ -17,7 +17,7 @@ anaconda_folder="Anaconda3-${ANACONDA_VERSION}"
 
 
 airflow_parcel_folder="AIRFLOW-${AIRFLOW_VERSION}"
-airflow_parcel_name="${airflow_parcel_folder}-el7.parcel"
+airflow_parcel_name="${airflow_parcel_folder}-trusty.parcel"
 airflow_built_folder="${airflow_parcel_folder}_build"
 
 function build_cm_ext {
@@ -50,7 +50,7 @@ function get_anaconda_with_airflow {
     echo " -- Installing Anaconda3"
     bash $anaconda_installer -b -p "$anaconda_prefix/$anaconda_folder"  # -b means silent mode; -p means prefix,ie path to installation directory
   fi
-  
+
   echo " -- Installing python packages"
   PATH=$anaconda_prefix/$anaconda_folder/bin:$PATH
   pip install apache-airflow[all]=="$AIRFLOW_VERSION"
@@ -61,7 +61,7 @@ function get_anaconda_with_airflow {
   pip install flask-bcrypt
   /usr/bin/yes | pip uninstall snakebite
 
-  echo " -- Clearing installed python executables"  
+  echo " -- Clearing installed python executables"
   set +e
   sed -i -- 's|#!'"$anaconda_prefix/$anaconda_folder"'/bin/python|#!/usr/bin/env python|g' "$anaconda_prefix"/"$anaconda_folder"/bin/*
   set -e
